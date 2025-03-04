@@ -25,6 +25,10 @@ public class FilmController {
             @RequestParam(required = false) UUID categoryId,
             @RequestParam(required = false) UUID actorId,
             @RequestParam(required = false) String description) {
+        // Validate that at least one parameter is provided
+        if (title == null && categoryId == null && actorId == null && description == null) {
+            return filmService.searchFilms(null, null, null, null); // Return all films
+        }
         return filmService.searchFilms(title, categoryId, actorId, description);
     }
 }
